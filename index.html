@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMI Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img src="images/tech-titans.png" alt="Tech Titans Logo" class="logo" />
+
+    <div class="content">
+      <div class="info-box">
+        <h3>Total Payment Breakdown</h3>
+        <p>
+          This includes the principal loan amount and total interest paid over
+          the selected period.
+        </p>
+        <strong id="totalPaymentBox">Total Payment: ₹0</strong>
+      </div>
+
+      <div class="container">
+        <h2>EMI Calculator</h2>
+        <label for="loanAmount">Loan Amount:</label>
+        <input
+          type="number"
+          id="loanAmount"
+          min="5000"
+          max="10000000"
+          step="1000"
+          value="500000"
+          oninput="updateValue('loanAmount', 'loanValue')"
+        />
+        <p id="loanValue">₹5,00,000</p>
+        <p id="loanWarning" class="warning"></p>
+
+        <label for="interestRate">Interest Rate (% per annum):</label>
+        <input
+          type="number"
+          id="interestRate"
+          min="1"
+          max="30"
+          step="0.1"
+          value="10"
+          oninput="updateValue('interestRate', 'interestValue')"
+        />
+        <p id="interestValue">10%</p>
+        <p id="rateWarning" class="warning"></p>
+        <!-- Warning for interest rate -->
+
+        <label for="term">Payment Term (months):</label>
+        <select id="term">
+          <option value="12">12 months</option>
+          <option value="24">24 months</option>
+          <option value="36">36 months</option>
+          <option value="48">48 months</option>
+          <option value="60">60 months</option>
+        </select>
+
+        <button id="calculateButton" onclick="calculateEMI()">
+          Calculate EMI
+        </button>
+
+        <div class="output">
+          <label for="emiAmount">EMI Amount:</label>
+          <input
+            type="text"
+            id="emiAmount"
+            readonly
+            style="
+              font-size: large;
+              font-weight: bold;
+              text-align: center;
+              width: 200px;
+              border: 2px solid black;
+              border-radius: 5px;
+              padding: 5px;
+            "
+          />
+        </div>
+
+        <p id="loanCategoryBox" style="font-size: large; font-weight: bold"></p>
+      </div>
+
+      <div class="info-box">
+        <h3>How EMI is Calculated?</h3>
+        <p>The EMI is calculated using the formula:</p>
+        <p><strong>EMI = [P × r × (1 + r)^n] / [(1 + r)^n - 1]</strong></p>
+        <p>
+          where P = Principal loan amount, r = Monthly interest rate, n = Loan
+          tenure (in months).
+        </p>
+        <strong id="interestPaidBox">Total Interest: ₹0</strong>
+      </div>
+    </div>
+
+    <div class="chart-container" id="chartContainer">
+      <canvas id="emiChart"></canvas>
+    </div>
+
+    <div class="emi-info" id="emiInfo">
+      <h3>📌 Understanding EMI: Benefits & Risks</h3>
+      <p><strong>Benefits of EMI:</strong></p>
+      <ul>
+        <li>Enables affordability by breaking down large expenses.</li>
+        <li>Flexible repayment tenures to suit financial planning.</li>
+        <li>Helps in credit score improvement with timely payments.</li>
+        <li>Predictable payments simplify budgeting.</li>
+      </ul>
+
+      <p><strong>Risks of EMI:</strong></p>
+      <ul>
+        <li>Interest rates can significantly increase total repayment.</li>
+        <li>Missing payments can lead to penalties and credit score damage.</li>
+        <li>Longer tenures may result in higher total interest costs.</li>
+        <li>Prepayment or foreclosure may attract additional charges.</li>
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+
+    <p id="highLoanWarning" class="warning"></p>
+
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="images/tech-titans.png" alt="Tech Titans Logo" />
+        </div>
+
+        <div class="footer-text">
+          <p><strong>Team Tech Titans</strong></p>
+          <ul>
+            <li><strong>Team Lead:</strong> JayaKarthika K</li>
+            <li>Aviral Mathur</li>
+            <li>Akshat Kamboj</li>
+            <li>Avijoy Hazra</li>
+            <li>Prajesh Saha</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
